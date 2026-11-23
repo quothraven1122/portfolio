@@ -1,3 +1,5 @@
+import { cn } from "@/libraries/cn";
+
 type SectionProps = {
   className?: string;
   children: React.ReactNode;
@@ -9,7 +11,11 @@ type SectionBlockType = {
 };
 
 export function Section({ className, children }: SectionProps) {
-  return <section className={`min-h-screen ${className}`}>{children}</section>;
+  return (
+    <section className={cn("min-h-screen p-[20px]", className)}>
+      {children}
+    </section>
+  );
 }
 
 export default function SectionBlock({
@@ -19,9 +25,11 @@ export default function SectionBlock({
 }: SectionBlockType) {
   return (
     <Section>
-      <h2>{title}</h2>
-      <h3>{subtitle}</h3>
-      {content}
+      <div className="text-center">
+        <h2 className="text-[30px]">{title}</h2>
+        <h3 className="text-primary-500">{subtitle}</h3>
+      </div>
+      <div className="mt-[40px]">{content}</div>
     </Section>
   );
 }
