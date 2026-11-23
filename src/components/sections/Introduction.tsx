@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Block from "../Block";
-import { Section } from "./SectionBlock";
+import { Section } from "./Block";
 import { TagGroup } from "../Tag";
 import { PROFILE, TECHSTACK, PROJECTS } from "../../constants/profile";
 
