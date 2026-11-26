@@ -12,6 +12,9 @@ type SectionBlockType = {
   subtitle: string;
   content: React.ReactNode;
 };
+type TimelineProps = {
+  children: React.ReactNode;
+};
 
 export function Section({ className, children }: SectionProps) {
   return (
@@ -82,6 +85,49 @@ export function ContentBlock({
         </ul>
       </div>
       <TagGroup title="습득 역량" data={skills} />
+    </div>
+  );
+}
+
+//ContentBlock에서 타임라인 점 추가한 컴포넌트
+export function ContentItem({
+  title,
+  subtitle,
+  status,
+  startPeriod,
+  endPeriod,
+  content,
+  skills,
+}: ContentType) {
+  return (
+    <div className="relative">
+      {/* Timeline dot */}
+      <span className="absolute top-8 left-8 hidden h-4 w-4 -translate-x-[7px] rounded-full bg-secondary-500 ring-4 ring-white lg:block" />
+
+      <div className="lg:ml-15">
+        <ContentBlock
+          title={title}
+          subtitle={subtitle}
+          status={status}
+          startPeriod={startPeriod}
+          endPeriod={endPeriod}
+          content={content}
+          skills={skills}
+        />
+      </div>
+    </div>
+  );
+}
+
+//타임라인
+export function Timeline({ children }: TimelineProps) {
+  return (
+    <div className="relative">
+      {/* Timeline line */}
+      <div className="absolute top-0 bottom-0 left-8 hidden w-0.5 rounded-lg bg-gradient-to-b from-secondary-400 to-secondary-600 lg:block" />
+
+      {/* Timeline items */}
+      <div className="space-y-12">{children}</div>
     </div>
   );
 }
