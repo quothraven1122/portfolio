@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { cn } from "@/libraries/cn";
-import { Tag, TagGroup } from "../Tag";
+import { Tag, TagGroup, ActiveTag, WebsiteTag } from "../Tag";
 import { ContentType } from "@/constants/education";
+import { ProjectDetailType, ProjectLinkKey } from "@/constants/projects";
 
 type SectionProps = {
   className?: string;
@@ -11,6 +12,7 @@ type SectionBlockType = {
   title: string;
   subtitle: string;
   content: React.ReactNode;
+  className?: string;
 };
 type TimelineProps = {
   children: React.ReactNode;
@@ -18,15 +20,18 @@ type TimelineProps = {
 
 export function Section({ className, children }: SectionProps) {
   return (
-    <section className={cn("min-h-screen p-[20px]", className)}>
-      {children}
-    </section>
+    <section className={cn("min-h-screen", className)}>{children}</section>
   );
 }
 
-export function SectionBlock({ title, subtitle, content }: SectionBlockType) {
+export function SectionBlock({
+  title,
+  subtitle,
+  content,
+  className,
+}: SectionBlockType) {
   return (
-    <Section>
+    <Section className={className}>
       <div className="text-center">
         <h2 className="text-[30px]">{title}</h2>
         <h3 className="text-primary-500">{subtitle}</h3>
@@ -128,6 +133,62 @@ export function Timeline({ children }: TimelineProps) {
 
       {/* Timeline items */}
       <div className="space-y-12">{children}</div>
+    </div>
+  );
+}
+
+export function ProjectBlock({
+  title,
+  subtitle,
+  isActive,
+  startPeriod,
+  endPeriod,
+  teamSize,
+  links,
+  skills,
+  projectImage,
+}: ProjectDetailType) {
+  return (
+    <div className="flex flex-col overflow-hidden transition-all md:flex-row ">
+      {/*프로젝트 이미지*/}
+      <div className="relative w-full flex-shrink-0 overflow-hidden md:h-auto md:w-3/5 md:mb-2">
+        <Image
+          src={projectImage}
+          alt="프로젝트 이미지"
+          width={600}
+          height={400}
+          className="h-full w-full object-cover transition-transform duration-500"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/50 text-white">
+          <div className="text-7xl font-semibold">{title}</div>
+        </div>
+      </div>
+      {/*프로젝트 정보 */}
+      <div className="flex flex-col px-5 justify-center p-6 md:w-2/5 md:p-8">
+        <h5 className="text-primary-500 text-md font-medium">{subtitle}</h5>
+        <div className="flex items-center gap-2 my-1">
+          <h4 className="text-3xl lg:text-5xl">{title}</h4>
+          <ActiveTag isActive={isActive} />
+        </div>
+        <div className="text-primary-500 text-sm mb-2">
+          <p>
+            <span className="font-bold text-black mr-3">제작 기간</span>
+            {startPeriod} - {endPeriod}
+          </p>
+          <p>
+            <span className="font-bold text-black mr-3">제작 인원</span>
+            {teamSize}인
+          </p>
+        </div>
+        <TagGroup title="사용 역량" data={skills} />
+        <div className="flex mt-5 gap-1">
+          {(Object.entries(links) as [ProjectLinkKey, string][]).map(
+            ([key, value]) => (
+              <WebsiteTag key={key} type={key} link={value} />
+            ),
+          )}
+        </div>
+      </div>
     </div>
   );
 }

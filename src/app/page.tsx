@@ -3,6 +3,7 @@
 import ReactFullpage from "@fullpage/react-fullpage";
 import Introduction from "@/components/sections/Introduction";
 import Education from "@/components/sections/Education";
+import Projects from "@/components/sections/Projects";
 
 export default function Home() {
   return (
@@ -20,6 +21,10 @@ export default function Home() {
 
           <div className="section">
             <Education />
+          </div>
+
+          <div className="section">
+            <Projects />
           </div>
         </ReactFullpage.Wrapper>
       )}
