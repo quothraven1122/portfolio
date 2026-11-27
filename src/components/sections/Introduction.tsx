@@ -7,7 +7,7 @@ import { downloadPdf } from "@/libraries/downloadPdf";
 
 export default function Introduction() {
   return (
-    <Section className="flex justify-center items-center gap-[15px] p-[35px]">
+    <Section className="relative flex flex-col justify-center items-center gap-[15px] p-[35px] sm:flex-row">
       <header className="absolute top-0 w-[95%] h-fit flex items-center justify-between border-t-2 border-b px-5 py-2 mt-8 z-50 bg-primary-50/70 md:w-[80%] md:px-7">
         <div className="w-44 items-center gap-2 flex">
           Available for work
@@ -20,7 +20,7 @@ export default function Introduction() {
           <Image width={18} height={18} src="/icons/pdf.svg" alt="pdf 아이콘" />
         </div>
       </header>
-      <div className="flex-col">
+      <div className="flex-col mt-25 sm:mt-0">
         <header>PORTFOLIO - 웹 풀스택 개발자</header>
         <h1 className="text-[40px] font-bold">정민주</h1>
 
