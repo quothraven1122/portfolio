@@ -5,7 +5,7 @@ export default function Projects() {
   return (
     <SectionBlock
       title="Projects"
-      subtitle="이미지를 클릭하여 프로젝트의 상세 과정과 결과를 확인해 보세요."
+      subtitle="프로젝트의 상세 과정과 결과를 확인해 보세요."
       content={
         <div className="relative md:w-[75%] md:m-auto">
           {PROJECTS.map((item, index) => (

@@ -75,3 +75,31 @@ body {
   background-color: inherit;
   animation: ripple 1.5s ease-out infinite;
 }
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html,
+  body,
+  main {
+    height: auto !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+  }
+  header {
+    display: none;
+  }
+  section {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    scroll-snap-align: none !important;
+  }
+  img {
+    display: block;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
