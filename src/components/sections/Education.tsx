@@ -24,6 +24,7 @@ export default function Education() {
           </Timeline>
         </div>
       }
+      className="p-[20px]"
     />
   );
 }
